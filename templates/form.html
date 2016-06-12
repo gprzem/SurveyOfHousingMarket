@@ -8,73 +8,107 @@
 </div>
 
 <form role="form" action="/save" method="post">
-    <h3>Personal data</h3>
+    <h3>Dane osobowe</h3>
     <div class="form-group">
         <label for="firstname">Imię:</label>
         <input type="text" class="form-control" id="firstname" name="firstname" required>
     </div>
+    <b>Płeć</b>
     <div class="form-group">
-        <label for="email">Email address:</label>
-        <input type="email" class="form-control" id="email" name="email" required>
+        <label class="radio-inline">
+          <input type="radio" name="q1" value="M">Mężczyzna
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="q1" value="K">Kobieta
+        </label>
     </div>
     <div class="form-group">
-        <label for="age">Age:</label>
-        <input type="number" class="form-control" id="age" name="age" min="1" max="100" required>
+        <label for="year-of-study">Rok studiów:</label>
+        <input type="number" class="form-control" id="age" name="year-of-study" min="1" max="6" required>
     </div>
-    <h3>Employee Job Satisfaction</h3>
     <div class="form-group">
-      <label for="income">Annual income $:</label>
-      <select class="form-control" id="income" name="income">
-        <option>20</option>
-        <option>50</option>
-        <option>100</option>
-        <option>150</option>
+        <label for="email">Adres email:</label>
+        <input type="email" class="form-control" id="email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="district">Dzielnica zamieszkania:</label>
+      <select class="form-control" id="district" name="district">
+      {% for element in districtsdata %}
+        <option value="{{ element.id }}">{{element.name}}</option>
+      {% endfor %}
+      </select>
+    </div>
+    <h3>Informacje o wynajmowanym mieszkaniu</h3>
+   <div class="form-group">
+      <label for="searching-time">Ile czasu zajęło ci znalezienie obecnego mieszkania:</label>
+      <select class="form-control" id="searching-time" name="searching-time">\
+       {% for element in searchingtimedata %}
+        <option value="{{ element.id }}">{{element.name}}</option>
+      {% endfor %}
       </select>
     </div>
     <div class="form-group">
-        <label for="satisfaction">Considering everything, how satisfied are you with your job?</label>
-        <input type="number" class="form-control" id="satisfaction" name="satisfaction" min="1" max="5" required>
+        <label for="cost">Ile wynoszą twoje miesięczne wydatki mieszkaniowe (czynsz, odstępne, media):</label>
+        <input type="number" class="form-control" id="cost" name="cost" min="0" max="10000" required>
     </div>
-    <h3>Programming skills</h3>
-    <b>Rate your proficiency with Python language</b>
+    <b>Oceń poziom twojego zadowolenia z wynajmowanego mieszkania</b>
     <div class="form-group">
         <label class="radio-inline">
-          <input type="radio" name="q1" value="1">1 (Beginner)
+          <input type="radio" name="q2" value="1">1 (Niezadowolony)
         </label>
         <label class="radio-inline">
-          <input type="radio" name="q1" value="2">2 (Junior)
+          <input type="radio" name="q2" value="2">2 (Raczej niezadowolony)
         </label>
         <label class="radio-inline">
-          <input type="radio" name="q1" value="3" checked>3 (Middle)
+          <input type="radio" name="q2" value="3" checked>3 (Trudno powiedzieć)
         </label>
         <label class="radio-inline">
-          <input type="radio" name="q1" value="4">4 (Senior)
+          <input type="radio" name="q2" value="4">4 (Raczej zadowolony)
         </label>
         <label class="radio-inline">
-          <input type="radio" name="q1" value="5">5 (Expert)
+          <input type="radio" name="q2" value="5">5 (Zadowolony)
         </label>
     </div>
-    <b>Rate your proficiency with Flask framework</b>
+    <h3>Informacje o poszukiwaniach mieszkania</h3>
+    <b>Z jakich źródeł informacji korzystałeś w trakcie poszukiwań mieszkania</b>
     <div class="form-group">
-        <label class="radio-inline">
-          <input type="radio" name="q2" value="1">1 (Beginner)
+      {% for element in infosourcedata %}
+        <label class="checkbox-inline">
+          <input type="checkbox" name="c1" value="{{ element.id }}">{{element.name}}
         </label>
-        <label class="radio-inline">
-          <input type="radio" name="q2" value="2">2 (Junior)
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      <label for="search-amount">Ile mieszkań oglądałeś zanim zdecydowałeś/-aś się na wynajem:</label>
+      <select class="form-control" id="search-amount" name="search-amount">
+      {% for element in searchingamount %}
+        <option value="{{ element.id }}">{{element.name}}</option>
+      {% endfor %}
+      </select>
+    </div>
+    <b>Na jakie spośród wymienionych trudności natrafiłeś w rozważanych ofertach wynajmu:</b>
+    <div class="form-group">
+        <label class="checkbox-inline">
+          <input type="checkbox" name="c2" value="1">Brak możliwości wynajęcia studentom
         </label>
-        <label class="radio-inline">
-          <input type="radio" name="q2" value="3" checked>3 (Middle)
+        <label class="checkbox-inline">
+          <input type="checkbox" name="c2" value="2">Brak możliwości wynajmu parom/małżeństwom z dzieckiem
         </label>
-        <label class="radio-inline">
-          <input type="radio" name="q2" value="4">4 (Senior)
+        <label class="checkbox-inline">
+          <input type="checkbox" name="c2" value="3">Zakaz palenia/spożywania alkoholu
         </label>
-        <label class="radio-inline">
-          <input type="radio" name="q2" value="5">5 (Expert)
+         <label class="checkbox-inline">
+          <input type="checkbox" name="c2" value="4">Zakaz posiadania zwierząt w mieszkaniu
+        </label>
+         <label class="checkbox-inline">
+          <input type="checkbox" name="c2" value="5">Zbyt wysoki poziom opłat
         </label>
     </div>
-
-
-    <button type="submit" class="btn btn-default">Save</button>
+    <div class="form-group">
+        <label for="others">Inne nieuwzględnione:</label>
+        <input type="text" class="form-control" id="others" name="others">
+    </div>
+    <button type="submit" class="btn btn-info">Save</button>
 </form>
 
 {% endblock %}

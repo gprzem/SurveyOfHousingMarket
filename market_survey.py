@@ -34,6 +34,41 @@ class Formdata(db.Model):
 db.create_all()
 
 
+class Districtsdata(db.Model):
+    __tablename__ = 'dict_districts'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+
+
+class Simpledictionary(db.Model):
+    __tablename__ = ''
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+
+
+class Difficultiesdata(db.Model):
+    __tablename__ = 'dict_difficulties'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+
+
+class Infosourcedata(db.Model):
+    __tablename__ = 'dict_info_source'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+
+
+class Searchingtimedata(db.Model):
+    __tablename__ = 'dict_searching_time'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+
+class Searchingamount(db.Model):
+    __tablename__ = 'dict_searching_amount'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+
+
 @app.route("/")
 def welcome():
     return render_template('welcome.html')
@@ -44,7 +79,13 @@ def show_purpose():
 
 @app.route("/form")
 def show_form():
-    return render_template('form.html')
+    data1 = db.session.query(Districtsdata)
+    data2 = db.session.query(Difficultiesdata)
+    data3 = db.session.query(Infosourcedata)
+    data4 = db.session.query(Searchingtimedata)
+    data5 = db.session.query(Searchingamount)
+    return render_template('form.html', districtsdata=data1, difficultiesdata=data2,  infosourcedata=data3,
+           searchingtimedata=data4, searchingamount=data5)
 
 @app.route("/raw")
 def show_raw():
