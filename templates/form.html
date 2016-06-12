@@ -10,13 +10,13 @@
 <form role="form" action="/save" method="post">
     <h3>Dane osobowe</h3>
     <div class="form-group">
-        <label for="firstname">Imię:</label>
-        <input type="text" class="form-control" id="firstname" name="firstname" required>
+        <label for="first-name">Imię:</label>
+        <input type="text" class="form-control" id="first-name" name="first-name" required>
     </div>
     <b>Płeć</b>
     <div class="form-group">
         <label class="radio-inline">
-          <input type="radio" name="q1" value="M">Mężczyzna
+          <input type="radio" name="q1" value="M" checked>Mężczyzna
         </label>
         <label class="radio-inline">
           <input type="radio" name="q1" value="K">Kobieta
@@ -72,11 +72,26 @@
     <h3>Informacje o poszukiwaniach mieszkania</h3>
     <b>Z jakich źródeł informacji korzystałeś w trakcie poszukiwań mieszkania</b>
     <div class="form-group">
-      {% for element in infosourcedata %}
         <label class="checkbox-inline">
-          <input type="checkbox" name="c1" value="{{ element.id }}">{{element.name}}
+          <input type="checkbox" name="c1" value="1">Portale z ogłoszeniami lokalnymi
+          <input type="hidden" name="c1" value="0">
         </label>
-      {% endfor %}
+        <label class="checkbox-inline">
+          <input type="checkbox" name="c2" value="1">Biuro pośrednictwa
+          <input type="hidden" name="c2" value="0">
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" name="c3" value="1">Studenckie bazy mieszkaniowe
+          <input type="hidden" name="c3" value="0">
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" name="c4" value="1">Portale społecznościowe
+          <input type="hidden" name="c4" value="0">
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" name="c5" value="1">Od znajomych
+          <input type="hidden" name="c5" value="0">
+        </label>
     </div>
     <div class="form-group">
       <label for="search-amount">Ile mieszkań oglądałeś zanim zdecydowałeś/-aś się na wynajem:</label>
@@ -89,20 +104,25 @@
     <b>Na jakie spośród wymienionych trudności natrafiłeś w rozważanych ofertach wynajmu:</b>
     <div class="form-group">
         <label class="checkbox-inline">
-          <input type="checkbox" name="c2" value="1">Brak możliwości wynajęcia studentom
+          <input type="checkbox" name="c6" value="1">Brak możliwości wynajęcia studentom
+          <input type="hidden" name="c6" value="0">
         </label>
         <label class="checkbox-inline">
-          <input type="checkbox" name="c2" value="2">Brak możliwości wynajmu parom/małżeństwom z dzieckiem
+          <input type="checkbox" name="c7" value="1">Brak możliwości wynajmu parom/małżeństwom z dzieckiem
+          <input type="hidden" name="c7" value="0">
         </label>
         <label class="checkbox-inline">
-          <input type="checkbox" name="c2" value="3">Zakaz palenia/spożywania alkoholu
+          <input type="checkbox" name="c8" value="1">Zakaz palenia/spożywania alkoholu
+          <input type="hidden" name="c8" value="0">
         </label>
          <label class="checkbox-inline">
-          <input type="checkbox" name="c2" value="4">Zakaz posiadania zwierząt w mieszkaniu
-        </label>
+          <input type="checkbox" name="c9" value="1">Zakaz posiadania zwierząt w mieszkaniu
+          <input type="hidden" name="c9" value="0">
+         </label>
          <label class="checkbox-inline">
-          <input type="checkbox" name="c2" value="5">Zbyt wysoki poziom opłat
-        </label>
+          <input type="checkbox" name="c10" value="1">Zbyt wysoki poziom opłat
+          <input type="hidden" name="c10" value="0">
+         </label>
     </div>
     <div class="form-group">
         <label for="others">Inne nieuwzględnione:</label>

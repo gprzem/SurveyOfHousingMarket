@@ -14,22 +14,50 @@ class Formdata(db.Model):
     __tablename__ = 'formdata'
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, default=datetime.now())
-    firstname = db.Column(db.String, nullable=False)
+    first_name = db.Column(db.String, nullable=False)
     email = db.Column(db.String)
-    age = db.Column(db.Integer)
-    income = db.Column(db.Integer)
-    satisfaction = db.Column(db.Integer)
-    q1 = db.Column(db.Integer)
-    q2 = db.Column(db.Integer)
+    year_of_study = db.Column(db.Integer)
+    district = db.Column(db.Integer)
+    searching_time = db.Column(db.Integer)
+    cost = db.Column(db.Integer)
+    search_amount = db.Column(db.Integer)
+    others = db.Column(db.String)
 
-    def __init__(self, firstname, email, age, income, satisfaction, q1, q2):
-        self.firstname = firstname
+    q1 = db.Column(db.Text)
+    q2 = db.Column(db.Integer)
+    c1 = db.Column(db.Boolean)
+    c2 = db.Column(db.Boolean)
+    c3 = db.Column(db.Boolean)
+    c4 = db.Column(db.Boolean)
+    c5 = db.Column(db.Boolean)
+    c6 = db.Column(db.Boolean)
+    c7 = db.Column(db.Boolean)
+    c8 = db.Column(db.Boolean)
+    c9 = db.Column(db.Boolean)
+    c10 = db.Column(db.Boolean)
+
+    def __init__(self, first_name, email, year_of_study, district, searching_time, cost, search_amount, others, q1, q2, c1,c2,c3,c4,c5,c6,c7,c8,c9,c10):
+        self.first_name = first_name
         self.email = email
-        self.age = age
-        self.income = income
-        self.satisfaction = satisfaction
+        self.year_of_study = year_of_study
+        self.district = district
+        self.searching_time = searching_time
+        self.search_amount = search_amount
+        self.cost = cost
+        self.others = others
         self.q1 = q1
         self.q2 = q2
+        self.c1 = c1
+        self.c2 = c2
+        self.c3 = c3
+        self.c4 = c4
+        self.c5 = c5
+        self.c6 = c6
+        self.c7 = c7
+        self.c8 = c8
+        self.c9 = c9
+        self.c10 = c10
+
 
 db.create_all()
 
@@ -130,16 +158,30 @@ def show_result():
 @app.route("/save", methods=['POST'])
 def save():
     # Get data from FORM
-    firstname = request.form['firstname']
+    first_name = request.form['first-name']
     email = request.form['email']
-    age = request.form['age']
-    income = request.form['income']
-    satisfaction = request.form['satisfaction']
+    year_of_study = request.form['year-of-study']
+    district = request.form['district']
+    searching_time = request.form['searching-time']
+    cost = request.form['cost']
+    search_amount = request.form['search-amount']
+    others = request.form['others']
+
     q1 = request.form['q1']
     q2 = request.form['q2']
+    c1 = request.form['c1']
+    c2 = request.form['c2']
+    c3 = request.form['c3']
+    c4 = request.form['c4']
+    c5 = request.form['c5']
+    c6 = request.form['c6']
+    c7 = request.form['c7']
+    c8 = request.form['c8']
+    c9 = request.form['c9']
+    c10 = request.form['c10']
 
     # Save the data
-    fd = Formdata(firstname, email, age, income, satisfaction, q1, q2)
+    fd = Formdata(first_name, email, year_of_study, district, searching_time, cost, search_amount, others, q1, q2, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10)
     db.session.add(fd)
     db.session.commit()
 
