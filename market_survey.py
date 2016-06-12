@@ -38,6 +38,10 @@ db.create_all()
 def welcome():
     return render_template('welcome.html')
 
+@app.route("/purpose")
+def show_purpose():
+    return render_template('purpose.html')
+
 @app.route("/form")
 def show_form():
     return render_template('form.html')

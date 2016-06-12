@@ -1,0 +1,38 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <!--<h1>Witamy w kwestionariuszu</h1>-->
+    <p>
+        Kraków jak wiemy jest miastem studentów. Przyczynia się do tego obecność wielu uczelni, często będących wśród najlepszych w kraju.
+        Sporą część przyjeżdżających żaków stanowią studenci zagraniczni pochodzący zarówno z Unii Europejskkiej jak i takich egzotycznych krajów jak Uganda, Nigeria czy Mongolia.
+        Przyjezdni akademicy stanowią pomiędzy pażdziernikiem a czerwcem ok. 20% przebywającyh na terenie Krakowa. Ich obecność w znaczącym stopniu musi wpływać na krakowski rynek mieszkaniowy.
+    </p>
+  <p>
+      "Studenci? Nie, dziękuję..." - tego typu odpowiedzi podczas poszukiwań mieszkania słyszy nie jeden żak. Niektórzy z wynajmujących argunemtują takie podejście złymi doświadzeniami z poprzednimi lokatorami.
+      Część na ślepo przyjmuje złą famę studentów bałaganiarzy, imprezowiczów i zakały narodu. Ale to nie jedyny problem jaki staje przed poszukującymi lokum. Wśród nich można wymienic z pewnością
+      stale rosnące ceny, odległości w zakorkowanym Krakowie, niepewni współlokatorzy...
+  </p>
+  <p>
+      Jakie wyzwania stoją przed studentami na rynku mieszkaniowym? Co wpływa na ich decyzje? Na co szczególnie zwracają uwagę? Na te inne pytania może pomóc analiza odpowiedzi udzielonych przez Państwa.
+  </p>
+  <div class="img-responsive img-center">
+        <img src="/static/pictures/1024px-Miasteczko_studenckie_AGH.JPG" />
+    </div>
+  </div>
+
+  <div class="page-header">
+    <h1>Następny krok</h1>
+  </div>
+  <p>
+    <a href="/form" class="btn btn-success" role="button">Przejdź do formularza</a>
+    <a href="/result" class="btn btn-primary" role="button">Przegląd wyników</a>
+  </p>
+
+
+
+{% endblock %}
+
