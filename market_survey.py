@@ -191,7 +191,7 @@ def show_result():
 
 
     # Prepare data for google charts
-    data = [[u'kobiety', mean_q_w],[u'mężczyźni', mean_q_m]]
+    data = [[u'kobiety', mean_q_w],[u'mezczyzni', mean_q_m]]
     data2list = []
     for key, value in d.items():
         data2list.append([key, value])
