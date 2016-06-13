@@ -4,9 +4,15 @@
 {% block content %}
 
 <div class="page-header">
-    <h1>Results</h1>
-    <div id="chart_div"></div>
+    <h1>Wyniki</h1>
+<h3>Zadowolenie z wynajmowanego mieszkania w zależności od płci</h3>
+        <div id="chart_div"></div>
+<h3>Zadowolenie z wynajmowanego mieszkania w zależności od roku studiów</h3>
+    <div id="chart_div2"></div>
+<h3>Średni koszt utrzymania mieszkania w zależności od roku studiów</h3>
+    <div id="chart_div3"></div>
 </div>
+
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
@@ -14,13 +20,46 @@
   google.setOnLoadCallback(drawChart);
   function drawChart() {
     var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Question');
-    data.addColumn('number', 'Average answer');
+    data.addColumn('string', 'Pytanie');
+    data.addColumn('number', 'Średnia wartość');
     data.addRows( {{ data|tojson }} );
     var chart = new google.visualization.ColumnChart(
             document.getElementById('chart_div'));
     chart.draw(data, {legend: 'none', vAxis: {baseline: 0} });
   }
 </script>
+
+
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load('visualization', '1', {'packages':['corechart']});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data2 = new google.visualization.DataTable();
+    data2.addColumn('string', 'Pytanie');
+    data2.addColumn('number', 'Średnia wartość');
+    data2.addRows( {{ data2|tojson }} );
+    var chart = new google.visualization.ColumnChart(
+            document.getElementById('chart_div2'));
+    chart.draw(data2, {legend: 'none', vAxis: {baseline: 0} });
+  }
+</script>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load('visualization', '1', {'packages':['corechart']});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data3 = new google.visualization.DataTable();
+    data3.addColumn('string', 'Pytanie');
+    data3.addColumn('number', 'Średnia wartość');
+    data3.addRows( {{ data3|tojson }} );
+    var chart = new google.visualization.ColumnChart(
+            document.getElementById('chart_div3'));
+    chart.draw(data3, {legend: 'none', vAxis: {baseline: 0} });
+  }
+</script>
+
 
 {% endblock %}

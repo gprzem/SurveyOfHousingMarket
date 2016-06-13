@@ -135,32 +135,71 @@ def show_result():
 
     # Some simple statistics for sample questions
     satisfaction = []
-    q1 = []
-    q2 = []
+    q_m = []
+    q_w = []
     for el in fd_list:
-        satisfaction.append(int(el.satisfaction))
-        q1.append(int(el.q1))
-        q2.append(int(el.q2))
+        if el.q1 == 'M':
+            q_m.append(int(el.q2))
+        else:
+            q_w.append(int(el.q2))
 
-    if len(satisfaction) > 0:
-        mean_satisfaction = statistics.mean(satisfaction)
+    if len(q_m) > 0:
+        mean_q_m = statistics.mean(q_m)
     else:
-        mean_satisfaction = 0
+        mean_q_m = 0
 
-    if len(q1) > 0:
-        mean_q1 = statistics.mean(q1)
+    if len(q_w) > 0:
+        mean_q_w = statistics.mean(q_w)
     else:
-        mean_q1 = 0
+        mean_q_w = 0
 
-    if len(q2) > 0:
-        mean_q2 = statistics.mean(q2)
+    d = {}
+    for year in range(1,6):
+        values_for_year = []
+        for el_q in fd_list:
+            if year == el_q.year_of_study:
+                values_for_year.append(el_q.q2)
+        if len(values_for_year) > 0:
+            mean = statistics.mean(values_for_year)
+        else:
+            mean = 0
+        d[str(year)] = mean
+
+
+    costs = {}
+    for year in range(1,6):
+        values_for_year = []
+        for el_q in fd_list:
+            if year == el_q.year_of_study:
+                values_for_year.append(el_q.cost)
+        if len(values_for_year) > 0:
+            mean = statistics.mean(values_for_year)
+        else:
+            mean = 0
+        costs[str(year)] = mean
+
+
+    if len(q_m) > 0:
+        mean_q_m = statistics.mean(q_m)
     else:
-        mean_q2 = 0
+        mean_q_m = 0
+
+    if len(q_w) > 0:
+        mean_q_w = statistics.mean(q_w)
+    else:
+        mean_q_w = 0
+
 
     # Prepare data for google charts
-    data = [['Satisfaction', mean_satisfaction], ['Python skill', mean_q1], ['Flask skill', mean_q2]]
+    data = [['kobiety', mean_q_w],['mężczyźni', mean_q_m]]
+    data2list = []
+    for key, value in d.items():
+        data2list.append([key, value])
 
-    return render_template('result.html', data=data)
+    data3list = []
+    for key, value in costs.items():
+        data3list.append([key, value])
+    return render_template('result.html', data=data, data2=data2list, data3=data3list)
 
 
 @app.route("/save", methods=['POST'])
