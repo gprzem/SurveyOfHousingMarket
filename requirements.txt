@@ -7,7 +7,6 @@ Jinja2==2.8
 lxml==3.3.3
 MarkupSafe==0.23
 oauthlib==1.1.2
-oneconf==0.3.7.14.4.1
 pexpect==4.1.0
 Pillow==2.3.0
 piston-mini-client==0.7.5
