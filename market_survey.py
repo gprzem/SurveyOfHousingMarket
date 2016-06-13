@@ -162,7 +162,6 @@ def show_result():
     return render_template('result.html', data=data)
 
 
-
 @app.route("/save", methods=['POST'])
 def save():
     # Get data from FORM
