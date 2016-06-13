@@ -163,7 +163,7 @@ def show_result():
             mean = statistics.mean(values_for_year)
         else:
             mean = 0
-        d[str(year)] = mean
+        d[year] = mean
 
 
     costs = {}
@@ -176,7 +176,7 @@ def show_result():
             mean = statistics.mean(values_for_year)
         else:
             mean = 0
-        costs[str(year)] = mean
+        costs[year] = mean
 
 
     if len(q_m) > 0:
@@ -193,12 +193,11 @@ def show_result():
     # Prepare data for google charts
     data = [[u'kobiety', mean_q_w],[u'mezczyzni', mean_q_m]]
     data2list = []
-    for key, value in d.items():
-        data2list.append([key, value])
-
+    for key in range(1,6):
+        data2list.append([str(key), d[key]])
     data3list = []
-    for key, value in costs.items():
-        data3list.append([key, value])
+    for key in range(1,6):
+        data3list.append([str(key), costs[key]])
     return render_template('result.html', data=data, data2=data2list, data3=data3list)
 
 
