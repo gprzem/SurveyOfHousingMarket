@@ -10,6 +10,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = 'True'
 
 db = SQLAlchemy(app)
 
+
+
 class Formdata(db.Model):
     __tablename__ = 'formdata'
     id = db.Column(db.Integer, primary_key=True)
@@ -96,7 +98,6 @@ class Searchingamount(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
 
-
 @app.route("/")
 def welcome():
     return render_template('welcome.html')
@@ -118,7 +119,13 @@ def show_form():
 @app.route("/raw")
 def show_raw():
     fd = db.session.query(Formdata).all()
-    return render_template('raw.html', formdata=fd)
+    data1 = db.session.query(Districtsdata)
+    data2 = db.session.query(Difficultiesdata)
+    data3 = db.session.query(Infosourcedata)
+    data4 = db.session.query(Searchingtimedata)
+    data5 = db.session.query(Searchingamount)
+    return render_template('raw.html', formdata=fd, districtsdata=data1, difficultiesdata=data2,  infosourcedata=data3,
+           searchingtimedata=data4, searchingamount=data5)
 
 
 @app.route("/result")

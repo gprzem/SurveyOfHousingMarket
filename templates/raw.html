@@ -4,21 +4,19 @@
 {% block content %}
 
 <div class="page-header">
-    <h1>Raw data</h1>
+    <h1>Odpowiedzi</h1>
 </div>
-
+<h3>Informacje na temat uczetników badania</h3>
 <table class="table">
     <thead>
     <tr>
         <th>#</th>
-        <th>Created at</th>
-        <th>First Name</th>
+        <th>Czas dodania</th>
+        <th>Imię</th>
         <th>Email</th>
-        <th>Age</th>
-        <th>Income</th>
-        <th>Satisfaction</th>
-        <th>Python</th>
-        <th>Flask</th>
+        <th>Płeć</th>
+        <th>Rok studiów</th>
+        <th>Dzielnica zamieszkania</th>
     </tr>
     </thead>
 
@@ -27,18 +25,97 @@
     <tr>
         <td>{{ element.id }}</td>
         <td>{{ element.created_at }}</td>
-        <td>{{ element.firstname }}</td>
+        <td>{{ element.first_name }}</td>
         <td>{{ element.email }}</td>
-        <td>{{ element.age }}</td>
-        <td>{{ element.income }}</td>
-        <td>{{ element.satisfaction }}</td>
-        <td>{{ element.q1 }}</td>
-        <td>{{ element.q2 }}</td>
-
+        <td>
+            {% if element.q1 == 'M' %}
+            mężczyzna
+            {% else %}
+            kobieta
+            {% endif %}
+        </td>
+        <td>{{ element.year_of_study }}</td>
+        <td>{{districtsdata.filter_by(id=element.district).first().name }}</td>
     </tr>
     {% endfor %}
     </tbody>
 </table>
+<h3>Informacje o wynajmowanych mieszkaniach</h3>
+    <table class="table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Czas dodania</th>
+        <th>Imię</th>
+        <th>Czas poszukiwań</th>
+        <th>Wydatki mieszkanowe</th>
+        <th>Poziom zadowolenia</th>
+    </tr>
+    </thead>
 
+    <tbody>
+    {% for element in formdata %}
+    <tr>
+        <td>{{ element.id }}</td>
+        <td>{{ element.created_at }}</td>
+        <td>{{ element.first_name }}</td>
+        <td>{{searchingtimedata.filter_by(id=element.searching_time).first().name }}</td>
+        <td>{{ element.cost }}</td>
+        <td>{{ element.q2 }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<h3>Informacje dotyczące poszukiwań mieszkania</h3>
+    <table class="table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Czas dodania</th>
+        <th>Imię</th>
+        <th>Źródła informacji</th>
+        <th>Liczba oglądanych mieszkań</th>
+        <th>Trudności</th>
+        <th>Inne niewymienione</th>
+    </tr>
+    </thead>
 
+    <tbody>
+    {% for element in formdata %}
+    <tr>
+        <td>{{ element.id }}</td>
+        <td>{{ element.created_at }}</td>
+        <td>{{ element.first_name }}</td>
+        <td>
+            {% if element.c1 == 1 %}{{ infosourcedata.filter_by(id=1).first().name}}, {% endif %}
+            {% if element.c2 == 1 %}{{ infosourcedata.filter_by(id=2).first().name}}, {% endif %}
+            {% if element.c3 == 1 %}{{ infosourcedata.filter_by(id=3).first().name}}, {% endif %}
+            {% if element.c4 == 1 %}{{ infosourcedata.filter_by(id=4).first().name}}, {% endif %}
+            {% if element.c5 == 1 %}{{ infosourcedata.filter_by(id=5).first().name}}, {% endif %}
+        </td>
+        <td>
+            {% if element.search_amount == 1 %}
+            pon. 1 tyg.
+            {% elif element.search_amount == 2 %}
+            1-2 tyg.
+            {% elif element.search_amount == 3 %}
+            1 msc.
+            {% elif element.search_amount == 4 %}
+            2-3 msc.
+            {% else %}
+            ponad 3 msc.
+            {% endif %}
+        </td>
+        <td>
+            {% if element.c6 == 1 %}{{ difficultiesdata.filter_by(id=1).first().name}}, {% endif %}
+            {% if element.c7 == 1 %}{{ difficultiesdata.filter_by(id=2).first().name}}, {% endif %}
+            {% if element.c8 == 1 %}{{ difficultiesdata.filter_by(id=3).first().name}}, {% endif %}
+            {% if element.c9 == 1 %}{{ difficultiesdata.filter_by(id=4).first().name}}, {% endif %}
+            {% if element.c10 == 1 %}{{ difficultiesdata.filter_by(id=5).first().name}}, {% endif %}
+        </td>
+        <td>{{ element.others }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
