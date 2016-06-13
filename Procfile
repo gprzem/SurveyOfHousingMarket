@@ -1,1 +1,1 @@
-web: gunicorn app:market_survey.py
+web: gunicorn market_survey:app
