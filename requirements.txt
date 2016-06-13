@@ -13,7 +13,6 @@ piston-mini-client==0.7.5
 ptyprocess==0.5.1
 pycrypto==2.6.1
 pycurl==7.19.3
-PyICU==1.5
 pyxdg==0.25
 reportlab==3.0
 six==1.10.0
